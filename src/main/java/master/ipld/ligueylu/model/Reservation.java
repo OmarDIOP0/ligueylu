@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import master.ipld.ligueylu.model.enums.Status;
+import master.ipld.ligueylu.model.enums.TypeService;
 
 import java.util.Date;
 
@@ -22,6 +23,8 @@ public class Reservation {
     private Long id;
     @NotBlank
     private String libelle;
+    @Enumerated(EnumType.STRING)
+    private TypeService typeService;
     @Lob
     private String description;
     @Enumerated(EnumType.STRING)

@@ -12,7 +12,6 @@ import java.util.List;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class Adresse {
@@ -23,7 +22,7 @@ public class Adresse {
     @Pattern(
             regexp = "\\d{7,9}",
             message = "Le numéro doit contenir entre 7 et 9 chiffres.")
-    private String numero;
+    private int numero;
 
     @NotBlank
     private String ville;
@@ -36,4 +35,14 @@ public class Adresse {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "adresse", orphanRemoval = true)
     private List<Prestataire> prestataires;
+
+
+    public Adresse(int numero, String codePostal, String ville, String pays, String rue) {
+        this.numero = numero;
+        this.codePostal = codePostal;
+        this.ville = ville;
+        this.pays = pays;
+        this.rue = rue;
+    }
+
 }

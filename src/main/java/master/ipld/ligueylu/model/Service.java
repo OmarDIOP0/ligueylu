@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import master.ipld.ligueylu.model.enums.TypeService;
 
 @Getter
 @Setter
@@ -18,15 +19,12 @@ public class Service {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank(message = "le libelle est obligatoire")
-    private String libelle;
+    @Enumerated(EnumType.STRING)
+    private TypeService typeService;
+    private int duree;
+    private double tarifStandard;
     @Lob
     private String description;
-    @Min(value = 0, message = "L'annee d'experience doit etre positive")
-    private int anneeExperience;
-
-    @Lob
-    private byte[] certification;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prestataire_id")
