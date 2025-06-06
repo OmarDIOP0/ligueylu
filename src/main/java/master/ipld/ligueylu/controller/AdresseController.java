@@ -36,7 +36,7 @@ public class AdresseController {
             ));
         }
     }
-    @GetMapping("/{id}/adress")
+    @GetMapping("/{id}")
     public ResponseEntity<ApiResponse> getAdresseById(@PathVariable Long id) {
         try{
             Adresse adresse = adresseService.getAdresseById(id);
@@ -87,7 +87,7 @@ public class AdresseController {
             ));
         }
     }
-    @PutMapping("/{id}/update")
+    @PutMapping("/{id}")
     public ResponseEntity<ApiResponse> updateAdresse(@RequestBody AdresseUpdateRequest adresse, @PathVariable Long id) {
         try {
             Adresse adresseResult = adresseService.updateAdresse(adresse, id);
