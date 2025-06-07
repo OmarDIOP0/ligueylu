@@ -3,12 +3,10 @@ package master.ipld.ligueylu.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 import master.ipld.ligueylu.model.abstracts.Utilisateur;
+import master.ipld.ligueylu.model.enums.Role;
 
 import java.util.HashSet;
 import java.util.List;
@@ -18,7 +16,6 @@ import java.util.Set;
 @Setter
 @SuperBuilder
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 public class Prestataire extends Utilisateur {
     @DecimalMin(value = "0.0", inclusive = true, message = "Le score doit être positif")
@@ -45,4 +42,13 @@ public class Prestataire extends Utilisateur {
 
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "prestataire",orphanRemoval = true)
     private List<Reservation> reservations;
+
+    public Prestataire(String email, String nomComplet, String password, String telephone) {
+        super();
+        this.setEmail(email);
+        this.setNomComplet(nomComplet);
+        this.setPassword(password);
+        this.setTelephone(telephone);
+        this.setRole(Role.PRESTATAIRE);
+    }
 }
