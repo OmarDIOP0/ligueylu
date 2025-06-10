@@ -1,7 +1,6 @@
 package master.ipld.ligueylu.service.prestataire;
 
 import lombok.RequiredArgsConstructor;
-import master.ipld.ligueylu.dto.UserDto;
 import master.ipld.ligueylu.exception.ResourceAlreadyExistException;
 import master.ipld.ligueylu.exception.ResourceNotFoundException;
 import master.ipld.ligueylu.model.Adresse;
@@ -12,14 +11,10 @@ import master.ipld.ligueylu.model.enums.Role;
 import master.ipld.ligueylu.repository.prestataire.PrestataireRepository;
 import master.ipld.ligueylu.request.AddPrestataireRequest;
 import master.ipld.ligueylu.request.UpdatePrestataireRequest;
-import org.hibernate.sql.Update;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -88,13 +83,13 @@ public class PrestataireService implements IPrestataireService {
     }
 
     @Override
-    public boolean isPrestataireActif(Long prestataireId) {
-        return false;
+    public Optional<Prestataire> isPrestataireActif(Long prestataireId) {
+        return prestataireRepository.findByIdAndActifTrue(prestataireId);
     }
 
     @Override
     public List<Prestataire> searchBySpecialite(String nomSpecialite) {
-        return List.of();
+        return prestataireRepository.findByNomSpecialite(nomSpecialite);
     }
 
     @Override

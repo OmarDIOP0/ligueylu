@@ -6,6 +6,7 @@ import master.ipld.ligueylu.request.UpdatePrestataireRequest;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 public interface IPrestataireService {
@@ -15,7 +16,7 @@ public interface IPrestataireService {
     Prestataire getPrestataireById(Long id);
     Prestataire updatePrestataire(UpdatePrestataireRequest prestataire, Long id);
     void deletePrestataire(Long id);
-    boolean isPrestataireActif(Long prestataireId);
+    Optional<Prestataire> isPrestataireActif(Long prestataireId);
     List<Prestataire> searchBySpecialite(String nomSpecialite);
     List<Prestataire> findByAdresse(String villeOuRegion);
     List<Prestataire> findByScoreGreaterThan(double minScore);
