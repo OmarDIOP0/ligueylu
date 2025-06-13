@@ -12,5 +12,4 @@ import master.ipld.ligueylu.dto.UserDto;
 @NoArgsConstructor
 public class AuthenticationResponse {
     private String token;
-    private UserDto user;
 }
